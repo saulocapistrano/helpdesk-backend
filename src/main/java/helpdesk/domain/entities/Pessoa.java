@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import helpdesk.domain.enums.Perfil;
 
-@Entity
+@Entity(name = "tb_pessoa")
 public abstract class Pessoa implements Serializable {
 
 	
