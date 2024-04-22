@@ -19,7 +19,7 @@ import helpdesk.domain.enums.Prioridade;
 import helpdesk.domain.enums.Status;
 
 
-@Entity(name ="tbchamado")
+@Entity
 public class Chamado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -38,12 +38,12 @@ public class Chamado implements Serializable {
 
 	private Status status;
 
-	@Column
-	@NotNull(message= "Campo título é obrigatorio")
+//	@Column
+	//@NotNull(message= "Campo título é obrigatorio")
 	private String titulo;
 
-	@Column
-	@NotNull(message= "Descreva o problema técnico que você está tendo")
+	//@Column
+	//@NotNull(message= "Descreva o problema técnico que você está tendo")
 	private String observacoes;
 
 	@ManyToOne

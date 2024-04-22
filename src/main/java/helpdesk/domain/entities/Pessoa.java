@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import helpdesk.domain.enums.Perfil;
 
-@Entity(name = "tb_pessoa")
+@Entity
 public abstract class Pessoa implements Serializable {
 
 	
@@ -33,19 +33,19 @@ public abstract class Pessoa implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Long id;
+	protected Integer id;
 	
-	@NotNull(message = "Campo nome é obrigatório")
+	// @NotNull(message = "Campo nome é obrigatório")
 	protected String nome;
 	
 	@Column(unique = true )
-	@NotNull(message = "Campo cpf é obrigatório")
-	@CPF
+	//@NotNull(message = "Campo cpf é obrigatório")
+	//@CPF
 	protected String cpf;
 	
 	@Column(unique = true )
-	@NotNull(message= "Campo email é obrigatorio")
-	@Email
+	//@NotNull(message= "Campo email é obrigatorio")
+	//@Email
 	protected String email;
 	
 	protected String senha;
@@ -62,7 +62,7 @@ public abstract class Pessoa implements Serializable {
 		addPerfis(Perfil.CLIENTE);
 	}
 
-	public Pessoa(Long id, @NotNull(message = "Campo nome é obrigatório") String nome,
+	public Pessoa(Integer id, @NotNull(message = "Campo nome é obrigatório") String nome,
 			@NotNull(message = "Campo cpf é obrigatório") @CPF String cpf,
 			@NotNull(message = "Campo email é obrigatorio") @Email String email, String senha ) {
 		super();
@@ -76,11 +76,11 @@ public abstract class Pessoa implements Serializable {
 	
 	
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

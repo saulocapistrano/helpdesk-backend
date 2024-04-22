@@ -10,26 +10,29 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import helpdesk.domain.enums.Perfil;
 
-@Entity(name = "tb_tecnico")
+@Entity
 public class Tecnico extends Pessoa{
 	
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico" )
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
 		super();
-		addPerfis(Perfil.TECNICO);
+		addPerfis(Perfil.CLIENTE);
 	}
 
-	public Tecnico(Long id, @NotNull(message = "Campo nome é obrigatório") String nome,
+	public Tecnico(Integer id, @NotNull(message = "Campo nome é obrigatório") String nome,
 			@NotNull(message = "Campo cpf é obrigatório") @CPF String cpf,
 			@NotNull(message = "Campo email é obrigatorio") @Email String email, String senha) {
 		super(id, nome, cpf, email, senha);
-		addPerfis(Perfil.TECNICO);
+		addPerfis(Perfil.CLIENTE);
 	}
 
 	public List<Chamado> getChamados() {
