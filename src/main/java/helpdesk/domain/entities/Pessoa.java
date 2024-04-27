@@ -40,12 +40,12 @@ public abstract class Pessoa implements Serializable {
 	
 	@Column(unique = true )
 	//@NotNull(message = "Campo cpf é obrigatório")
-	//@CPF
+	@CPF
 	protected String cpf;
 	
 	@Column(unique = true )
 	//@NotNull(message= "Campo email é obrigatorio")
-	//@Email
+	@Email
 	protected String email;
 	
 	protected String senha;
