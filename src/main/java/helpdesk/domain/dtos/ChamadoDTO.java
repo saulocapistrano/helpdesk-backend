@@ -6,42 +6,39 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import helpdesk.domain.entities.Chamado;
-import helpdesk.domain.entities.Cliente;
-import helpdesk.domain.entities.Tecnico;
-import helpdesk.domain.enums.Prioridade;
-import helpdesk.domain.enums.Status;
 
 public class ChamadoDTO implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	private Prioridade prioridade;
-	private Status status;
+	private Integer prioridade;
+	private Integer status;
 	private String titulo;
 	private String observacoes;
-	private Tecnico tecnico;
-	private Cliente cliente;
+	private Integer tecnico;
+	private Integer cliente;
 	private String nomeTecnico;
 	private String nomeCliente;
+	
 	public ChamadoDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ChamadoDTO(Chamado obj) {
 		super();
 		this.id = obj.getId();
 		this.dataAbertura = obj.getDataAbertura();
 		this.dataFechamento = obj.getDataFechamento();
-		this.prioridade = obj.getPrioridade();
-		this.status = obj.getStatus();
+		this.prioridade = obj.getPrioridade().getCodigo();
+		this.status = obj.getStatus().getCodigo();
 		this.titulo = obj.getTitulo();
 		this.observacoes = obj.getObservacoes();
-		this.tecnico = obj.getTecnico();
-		this.cliente = obj.getCliente();
+		this.tecnico = obj.getTecnico().getId();
+		this.cliente = obj.getCliente().getId();
 		this.nomeTecnico = obj.getTecnico().getNome();
 		this.nomeCliente = obj.getCliente().getNome();
 	}
@@ -70,19 +67,19 @@ public class ChamadoDTO implements Serializable{
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Prioridade getPrioridade() {
+	public Integer getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(Prioridade prioridade) {
+	public void setPrioridade(Integer prioridade) {
 		this.prioridade = prioridade;
 	}
 
-	public Status getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -102,19 +99,19 @@ public class ChamadoDTO implements Serializable{
 		this.observacoes = observacoes;
 	}
 
-	public Tecnico getTecnico() {
+	public Integer getTecnico() {
 		return tecnico;
 	}
 
-	public void setTecnico(Tecnico tecnico) {
+	public void setTecnico(Integer tecnico) {
 		this.tecnico = tecnico;
 	}
 
-	public Cliente getCliente() {
+	public Integer getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(Integer cliente) {
 		this.cliente = cliente;
 	}
 
@@ -133,8 +130,7 @@ public class ChamadoDTO implements Serializable{
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
-	
-	
+
 	
 	
 }

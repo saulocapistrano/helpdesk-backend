@@ -28,32 +28,28 @@ import helpdesk.domain.enums.Perfil;
 @Entity
 public abstract class Pessoa implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
-	// @NotNull(message = "Campo nome é obrigatório")
+
 	protected String nome;
-	
-	@Column(unique = true )
-	//@NotNull(message = "Campo cpf é obrigatório")
+
+	@Column(unique = true)
 	@CPF
 	protected String cpf;
-	
-	@Column(unique = true )
-	//@NotNull(message= "Campo email é obrigatorio")
+
+	@Column(unique = true)
 	@Email
 	protected String email;
-	
+
 	protected String senha;
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name ="PERFILS")
+	@CollectionTable(name = "PERFILS")
 	protected Set<Integer> perfis = new HashSet<>();
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 
@@ -64,7 +60,7 @@ public abstract class Pessoa implements Serializable {
 
 	public Pessoa(Integer id, @NotNull(message = "Campo nome é obrigatório") String nome,
 			@NotNull(message = "Campo cpf é obrigatório") @CPF String cpf,
-			@NotNull(message = "Campo email é obrigatorio") @Email String email, String senha ) {
+			@NotNull(message = "Campo email é obrigatorio") @Email String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -73,8 +69,6 @@ public abstract class Pessoa implements Serializable {
 		this.senha = senha;
 		addPerfis(Perfil.CLIENTE);
 	}
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -132,8 +126,6 @@ public abstract class Pessoa implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);
@@ -156,9 +148,5 @@ public abstract class Pessoa implements Serializable {
 		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", senha=" + senha + ", perfis=" + perfis
 				+ ", dataCriacao=" + dataCriacao + "]";
 	}
-	
-	
-	
-	
-	
+
 }

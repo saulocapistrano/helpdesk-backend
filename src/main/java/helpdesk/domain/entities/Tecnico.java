@@ -18,27 +18,26 @@ import helpdesk.domain.dtos.TecnicoDTO;
 import helpdesk.domain.enums.Perfil;
 
 @Entity
-public class Tecnico extends Pessoa{
-	
+public class Tecnico extends Pessoa {
+
 	private static final long serialVersionUID = 1L;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "tecnico" )
+	@OneToMany(mappedBy = "tecnico")
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
 		super();
-		addPerfis(Perfil.CLIENTE);
+		addPerfis(Perfil.TECNICO);
 	}
 
-	public Tecnico(Integer id, @NotNull(message = "Campo nome é obrigatório") String nome,
-			@NotNull(message = "Campo cpf é obrigatório") @CPF String cpf,
-			@NotNull(message = "Campo email é obrigatorio") @Email String email, String senha) {
+	public Tecnico(Integer id, String nome, @CPF String cpf, @Email String email, String senha) {
 		super(id, nome, cpf, email, senha);
-		addPerfis(Perfil.CLIENTE);
+		addPerfis(Perfil.TECNICO);
 	}
 
-	// esse contrutor auxilia a criação de um novo técnico quando o método create do controller de Técnico for acionado 
+	// esse contrutor auxilia a criação de um novo técnico quando o método create do
+	// controller de Técnico for acionado
 	public Tecnico(TecnicoDTO obj) {
 		super();
 		this.id = obj.getId();
@@ -49,8 +48,7 @@ public class Tecnico extends Pessoa{
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
 	}
-	
-	
+
 	public List<Chamado> getChamados() {
 		return chamados;
 	}
@@ -58,6 +56,5 @@ public class Tecnico extends Pessoa{
 	public void setChamados(List<Chamado> chamados) {
 		this.chamados = chamados;
 	}
-	
-	
+
 }
