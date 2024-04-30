@@ -6,7 +6,7 @@ public enum Prioridade {
 
 	private Integer codigo;
 	private String desccricao;
-
+	
 	private Prioridade(Integer codigo, String descricao) {
 		this.codigo = codigo;
 		this.desccricao = descricao;
@@ -27,8 +27,8 @@ public enum Prioridade {
 	public void setDesccricao(String desccricao) {
 		this.desccricao = desccricao;
 	}
-
-	public static Prioridade toEnum(Prioridade cod) {
+	
+	public static Prioridade toEnum(Integer cod) {
 		if (cod == null)
 			return null;
 

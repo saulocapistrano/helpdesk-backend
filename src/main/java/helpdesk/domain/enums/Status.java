@@ -27,12 +27,13 @@ public enum Status {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public static Status toEnum(Status cod) {
+	
+	public static Status toEnum(Integer cod) {
 		if (cod == null)
 			return null;
 		for (Status x : Status.values()) {
-			if (cod.equals(x.getClass())) {
+			if (cod.equals(x.getCodigo())) {
+				
 				return x;
 			}
 		}
@@ -40,3 +41,4 @@ public enum Status {
 		throw new IllegalArgumentException("Status inválido");
 	}
 }
+	
