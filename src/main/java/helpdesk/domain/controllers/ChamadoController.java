@@ -27,37 +27,32 @@ public class ChamadoController {
 
 	@Autowired
 	private ChamadoService service;
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ChamadoDTO> findById(@PathVariable Integer id ){
+	public ResponseEntity<ChamadoDTO> findById(@PathVariable Integer id) {
 		Chamado obj = service.findById(id);
 		return ResponseEntity.ok().body(new ChamadoDTO(obj));
 	}
-	
-	
+
 	@GetMapping
-	public ResponseEntity<List<ChamadoDTO>> findAll(){
+	public ResponseEntity<List<ChamadoDTO>> findAll() {
 		List<Chamado> list = service.findAll();
 		List<ChamadoDTO> listDTO = list.stream().map(obj -> new ChamadoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<ChamadoDTO> create(@Valid @RequestBody ChamadoDTO objDTO){
-		System.out.println("Cliente "+objDTO.getCliente());
+	public ResponseEntity<ChamadoDTO> create(@Valid @RequestBody ChamadoDTO objDTO) {
+		System.out.println("Cliente " + objDTO.getCliente());
 		Chamado obj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ChamadoDTO> update( @PathVariable Integer id,@Valid @RequestBody ChamadoDTO objDTO ){
+	public ResponseEntity<ChamadoDTO> update(@PathVariable Integer id, @Valid @RequestBody ChamadoDTO objDTO) {
 		Chamado newObj = service.update(id, objDTO);
 		return ResponseEntity.ok().body(new ChamadoDTO(newObj));
 	}
-	
-	
-	
-	
-	
+
 }
