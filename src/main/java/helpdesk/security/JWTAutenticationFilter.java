@@ -58,7 +58,6 @@ public class JWTAutenticationFilter extends UsernamePasswordAuthenticationFilter
 		response.setHeader("access-control-expose-headers", "Authorization");
 		response.setHeader("Authorization", "Bearer " + token);
 
-//		super.successfulAuthentication(request, response, chain, authResult);
 	}
 
 	@Override
